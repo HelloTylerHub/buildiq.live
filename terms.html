@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms of Service — BuildIQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue-900: #1e3a8a; --blue-800: #1e40af; --blue-600: #2563eb;
+  --slate-900: #0f172a; --slate-800: #1e293b; --slate-700: #334155;
+  --slate-600: #475569; --slate-500: #64748b; --slate-400: #94a3b8;
+  --slate-200: #e2e8f0; --slate-100: #f1f5f9; --slate-50: #f8fafc;
+  --amber-500: #f59e0b; --amber-400: #fbbf24;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--slate-700); background: white; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+a { color: var(--blue-600); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--slate-200);
+  padding: 0 5%;
+}
+.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.nav-brand { font-size: 20px; font-weight: 900; color: var(--slate-900); letter-spacing: -0.5px; }
+.nav-brand span { color: var(--blue-600); }
+.btn-primary { background: var(--blue-600); color: white; font-weight: 700; font-size: 14px; padding: 10px 22px; border-radius: 8px; transition: background .2s; }
+.btn-primary:hover { background: var(--blue-900); text-decoration: none; }
+
+.hero-bar {
+  background: linear-gradient(135deg, var(--blue-900), var(--blue-800));
+  padding: 64px 5%;
+  text-align: center;
+}
+.hero-bar h1 { font-size: 40px; font-weight: 900; color: white; letter-spacing: -1.5px; margin-bottom: 12px; }
+.hero-bar p { font-size: 16px; color: rgba(255,255,255,0.6); }
+
+.content-wrap { max-width: 820px; margin: 0 auto; padding: 72px 5%; }
+
+.toc { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 12px; padding: 28px 32px; margin-bottom: 56px; }
+.toc h3 { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--slate-400); margin-bottom: 16px; }
+.toc ol { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.toc ol li a { font-size: 14px; font-weight: 500; color: var(--slate-700); }
+.toc ol li a:hover { color: var(--blue-600); }
+
+.policy-section { margin-bottom: 52px; }
+.policy-section h2 { font-size: 22px; font-weight: 800; color: var(--slate-900); letter-spacing: -0.4px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--slate-100); }
+.policy-section p { font-size: 15px; line-height: 1.75; color: var(--slate-600); margin-bottom: 16px; }
+.policy-section p:last-child { margin-bottom: 0; }
+.policy-section ul { padding-left: 24px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 8px; }
+.policy-section ul li { font-size: 15px; color: var(--slate-600); line-height: 1.65; }
+.policy-section h3 { font-size: 16px; font-weight: 700; color: var(--slate-800); margin: 24px 0 10px; }
+
+.callout { background: #fffbeb; border-left: 4px solid var(--amber-500); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0; font-size: 14px; color: var(--slate-700); line-height: 1.65; }
+.callout-blue { background: #eff6ff; border-left: 4px solid var(--blue-600); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0; font-size: 14px; color: var(--slate-700); line-height: 1.65; }
+
+.last-updated { font-size: 13px; color: var(--slate-400); margin-bottom: 40px; }
+
+footer { background: var(--slate-900); padding: 48px 5%; text-align: center; }
+footer p { font-size: 13px; color: rgba(255,255,255,0.35); }
+footer a { color: rgba(255,255,255,0.5); }
+footer a:hover { color: white; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" style="text-decoration:none">
+      <span class="nav-brand">Build<span>IQ</span></span>
+    </a>
+    <a href="https://buildiq-production-19b9.up.railway.app/register" class="btn-primary">Start free trial</a>
+  </div>
+</nav>
+
+<div class="hero-bar">
+  <h1>Terms of Service</h1>
+  <p>Last updated: June 25, 2026</p>
+</div>
+
+<div class="content-wrap">
+
+  <p class="last-updated">Please read these Terms carefully before using BuildIQ. By creating an account or using the Service, you agree to be bound by these Terms. If you do not agree, do not use the Service.</p>
+
+  <div class="toc">
+    <h3>Table of Contents</h3>
+    <ol>
+      <li><a href="#acceptance">Acceptance of Terms</a></li>
+      <li><a href="#description">Description of Service</a></li>
+      <li><a href="#accounts">Accounts and Registration</a></li>
+      <li><a href="#subscription">Subscription and Billing</a></li>
+      <li><a href="#acceptable-use">Acceptable Use</a></li>
+      <li><a href="#ai-content">AI-Generated Content</a></li>
+      <li><a href="#your-content">Your Content</a></li>
+      <li><a href="#intellectual-property">Intellectual Property</a></li>
+      <li><a href="#disclaimers">Disclaimers</a></li>
+      <li><a href="#limitation">Limitation of Liability</a></li>
+      <li><a href="#indemnification">Indemnification</a></li>
+      <li><a href="#termination">Termination</a></li>
+      <li><a href="#governing-law">Governing Law</a></li>
+      <li><a href="#changes">Changes to Terms</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <div class="policy-section" id="acceptance">
+    <h2>1. Acceptance of Terms</h2>
+    <p>These Terms of Service ("Terms") constitute a legally binding agreement between you ("User," "you," or "your") and BuildIQ ("BuildIQ," "we," "us," or "our") governing your access to and use of the BuildIQ platform and all associated services (collectively, the "Service").</p>
+    <p>By accessing or using the Service, creating an account, or clicking "I agree" or equivalent, you confirm that you have read, understood, and agreed to these Terms and our <a href="privacy.html">Privacy Policy</a>.</p>
+    <p>If you are using the Service on behalf of a business, you represent that you have authority to bind that business to these Terms.</p>
+  </div>
+
+  <div class="policy-section" id="description">
+    <h2>2. Description of Service</h2>
+    <p>BuildIQ is a cloud-based business management platform for contractors that provides:</p>
+    <ul>
+      <li>AI-assisted bid and estimate generation</li>
+      <li>Invoice creation and payment tracking</li>
+      <li>AI-generated construction contract templates</li>
+      <li>Marketing content generation</li>
+      <li>CRM and lead pipeline management</li>
+      <li>Change order tracking</li>
+      <li>Automated follow-up suggestions</li>
+    </ul>
+    <p>We reserve the right to modify, add, or remove features at any time with reasonable notice.</p>
+  </div>
+
+  <div class="policy-section" id="accounts">
+    <h2>3. Accounts and Registration</h2>
+    <p>To use BuildIQ you must create an account. You agree to:</p>
+    <ul>
+      <li>Provide accurate, complete, and current information when registering</li>
+      <li>Keep your password secure and not share account credentials</li>
+      <li>Notify us immediately of any unauthorized use of your account</li>
+      <li>Be responsible for all activity that occurs under your account</li>
+    </ul>
+    <p>You must be at least 18 years old to create an account. By registering, you represent that you meet this requirement.</p>
+    <p>We reserve the right to suspend or terminate accounts that violate these Terms, provide false information, or engage in fraudulent activity.</p>
+  </div>
+
+  <div class="policy-section" id="subscription">
+    <h2>4. Subscription and Billing</h2>
+    <h3>Free trial</h3>
+    <p>New accounts receive a 14-day free trial with full access. No credit card is required to start. At the end of the trial, you must subscribe to continue using the Service.</p>
+    <h3>Paid plans</h3>
+    <p>Paid subscriptions are billed monthly or annually in advance. Prices are listed on our pricing page and are in USD. We may change pricing with 30 days advance notice.</p>
+    <h3>Cancellation and refunds</h3>
+    <ul>
+      <li>You may cancel your subscription at any time from your account settings</li>
+      <li>Cancellation takes effect at the end of the current billing period — you retain access until that date</li>
+      <li>We do not offer prorated refunds for partial billing periods</li>
+      <li>If you experience a service outage caused by our failure, contact us to discuss remedies</li>
+    </ul>
+    <h3>Payment processing</h3>
+    <p>All payments are processed by Stripe. By subscribing, you authorize Stripe to charge your payment method on a recurring basis. Failed payments may result in service suspension after a reasonable grace period.</p>
+  </div>
+
+  <div class="policy-section" id="acceptable-use">
+    <h2>5. Acceptable Use</h2>
+    <p>You agree not to use the Service to:</p>
+    <ul>
+      <li>Violate any applicable law or regulation</li>
+      <li>Generate fraudulent, misleading, or deceptive documents</li>
+      <li>Impersonate another person or entity</li>
+      <li>Attempt to gain unauthorized access to any part of the Service or its infrastructure</li>
+      <li>Reverse engineer, decompile, or attempt to extract source code</li>
+      <li>Resell, sublicense, or provide the Service to third parties without our written consent</li>
+      <li>Use automated scripts or bots to abuse the AI generation features</li>
+      <li>Upload or transmit malicious code, spam, or harmful content</li>
+      <li>Use the Service in any way that could damage, disable, or overburden our infrastructure</li>
+    </ul>
+    <p>We reserve the right to investigate suspected violations and take appropriate action, including account suspension or termination.</p>
+  </div>
+
+  <div class="policy-section" id="ai-content">
+    <h2>6. AI-Generated Content</h2>
+    <div class="callout">
+      <strong>Important:</strong> AI-generated documents are professional starting points — not legal, financial, or professional advice. Always review AI output before sending to clients. For large or complex contracts, consult a licensed attorney in your state.
+    </div>
+    <p>BuildIQ uses Anthropic's Claude AI to generate bids, contracts, marketing content, and other documents. You acknowledge that:</p>
+    <ul>
+      <li>AI-generated content may contain errors, omissions, or inaccuracies</li>
+      <li>AI-generated contract templates are not a substitute for legal advice</li>
+      <li>You are solely responsible for reviewing AI-generated content before using it in any business context</li>
+      <li>We do not warrant that AI-generated content is accurate, complete, legally valid, or fit for any specific purpose</li>
+      <li>Laws governing construction contracts vary by state and jurisdiction — what is appropriate in one state may not be in another</li>
+    </ul>
+    <p>BuildIQ is not a law firm, accounting firm, or licensed contractor. The Service provides tools to help you work more efficiently, not professional advice.</p>
+    <h3>AI content ownership</h3>
+    <p>Subject to your compliance with these Terms, you own the AI-generated content created using your account. We do not claim ownership of your documents.</p>
+  </div>
+
+  <div class="policy-section" id="your-content">
+    <h2>7. Your Content</h2>
+    <p>You retain full ownership of all content you submit to the Service, including client information, project details, bid data, invoices, and contracts ("Your Content").</p>
+    <p>By using the Service, you grant BuildIQ a limited, non-exclusive license to store, process, and display Your Content solely as necessary to provide the Service to you. We do not use Your Content for any other purpose.</p>
+    <p>You represent and warrant that Your Content does not infringe any third-party rights and that you have the right to submit it to the Service.</p>
+    <p>You are responsible for maintaining backups of important data. We are not liable for data loss due to technical failures, though we maintain reasonable backup procedures.</p>
+  </div>
+
+  <div class="policy-section" id="intellectual-property">
+    <h2>8. Intellectual Property</h2>
+    <p>The BuildIQ platform, including its code, design, branding, trademarks, and all non-user content, is the exclusive property of BuildIQ and is protected by copyright, trademark, and other intellectual property laws.</p>
+    <p>You may not copy, reproduce, distribute, or create derivative works from any part of the Service without our express written consent.</p>
+    <p>The BuildIQ name and logo are our trademarks. You may not use them without prior written permission.</p>
+  </div>
+
+  <div class="policy-section" id="disclaimers">
+    <h2>9. Disclaimers</h2>
+    <p>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+    <p>WE DO NOT WARRANT THAT:</p>
+    <ul>
+      <li>The Service will be uninterrupted, error-free, or secure</li>
+      <li>Any AI-generated content will be accurate, complete, or legally valid</li>
+      <li>The Service will meet your specific business requirements</li>
+      <li>Defects or errors in the Service will be corrected</li>
+    </ul>
+    <p>Your use of the Service is at your sole risk. You are responsible for all decisions made based on content generated by the Service.</p>
+  </div>
+
+  <div class="policy-section" id="limitation">
+    <h2>10. Limitation of Liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, BUILDIQ AND ITS OFFICERS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS, LOST REVENUE, LOSS OF DATA, OR BUSINESS INTERRUPTION, ARISING FROM YOUR USE OF OR INABILITY TO USE THE SERVICE.</p>
+    <p>IN NO EVENT WILL OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING FROM OR RELATED TO THE SERVICE EXCEED THE GREATER OF: (A) THE TOTAL AMOUNT YOU PAID TO BUILDIQ IN THE 12 MONTHS PRECEDING THE CLAIM, OR (B) $100.</p>
+    <p>Some jurisdictions do not allow the exclusion or limitation of certain damages — in such cases, our liability is limited to the maximum extent permitted by law.</p>
+  </div>
+
+  <div class="policy-section" id="indemnification">
+    <h2>11. Indemnification</h2>
+    <p>You agree to indemnify, defend, and hold harmless BuildIQ and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable attorneys' fees) arising out of or in any way connected with:</p>
+    <ul>
+      <li>Your access to or use of the Service</li>
+      <li>Your violation of these Terms</li>
+      <li>Your violation of any third-party rights</li>
+      <li>Any content you submit to or generate through the Service</li>
+      <li>Any business disputes between you and your clients arising from documents generated through the Service</li>
+    </ul>
+  </div>
+
+  <div class="policy-section" id="termination">
+    <h2>12. Termination</h2>
+    <h3>By you</h3>
+    <p>You may close your account at any time by canceling your subscription in account settings or by contacting us. Upon account closure, your access ends at the end of the current billing period.</p>
+    <h3>By us</h3>
+    <p>We may suspend or terminate your account immediately if you:</p>
+    <ul>
+      <li>Violate these Terms in a material way</li>
+      <li>Engage in fraudulent activity</li>
+      <li>Fail to pay subscription fees after a grace period</li>
+      <li>Use the Service in a way that causes harm to others or to our platform</li>
+    </ul>
+    <p>Upon termination, your right to use the Service ceases immediately. We will provide a 30-day window to export your data before permanent deletion, unless termination is due to fraud or illegal activity.</p>
+  </div>
+
+  <div class="policy-section" id="governing-law">
+    <h2>13. Governing Law</h2>
+    <p>These Terms are governed by the laws of the United States without regard to conflict of law principles. Any disputes arising under these Terms shall be resolved through binding arbitration under the rules of the American Arbitration Association, except that either party may seek injunctive relief in a court of competent jurisdiction.</p>
+    <p>You waive any right to participate in class-action lawsuits against BuildIQ.</p>
+  </div>
+
+  <div class="policy-section" id="changes">
+    <h2>14. Changes to Terms</h2>
+    <p>We may update these Terms from time to time. We will notify you of material changes by email and by posting a notice in the app at least 14 days before they take effect.</p>
+    <p>Your continued use of the Service after updated Terms take effect constitutes acceptance. If you do not agree to updated Terms, you must stop using the Service before they take effect.</p>
+  </div>
+
+  <div class="policy-section" id="contact">
+    <h2>15. Contact</h2>
+    <p>Questions about these Terms? Contact us:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:tyler@bruce-building.com">tyler@bruce-building.com</a></li>
+      <li><strong>Product:</strong> BuildIQ — AI Construction Platform</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 BuildIQ. All rights reserved. &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="mailto:tyler@bruce-building.com">Contact</a></p>
+</footer>
+
+</body>
+</html>

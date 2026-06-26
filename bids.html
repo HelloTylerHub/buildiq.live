@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bids & Estimates — BuildIQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue-900: #1e3a8a; --blue-800: #1e40af; --blue-700: #1d4ed8;
+  --blue-600: #2563eb; --blue-500: #3b82f6; --blue-100: #dbeafe; --blue-50: #eff6ff;
+  --amber-600: #d97706; --amber-500: #f59e0b; --amber-400: #fbbf24; --amber-50: #fffbeb;
+  --green-600: #16a34a; --green-500: #22c55e; --green-100: #dcfce7; --green-50: #f0fdf4;
+  --slate-900: #0f172a; --slate-800: #1e293b; --slate-700: #334155;
+  --slate-600: #475569; --slate-500: #64748b; --slate-400: #94a3b8;
+  --slate-300: #cbd5e1; --slate-200: #e2e8f0; --slate-100: #f1f5f9; --slate-50: #f8fafc;
+  --white: #ffffff;
+  --radius-sm: 8px; --radius: 12px; --radius-lg: 20px; --radius-xl: 28px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--slate-800); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--slate-200); padding: 0 5%; }
+.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-brand { font-size: 22px; font-weight: 900; color: var(--slate-900); letter-spacing: -0.5px; }
+.nav-brand span { color: var(--blue-600); }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--slate-600); transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--blue-600); }
+.btn-primary { background: var(--blue-600); color: white; font-weight: 700; font-size: 14px; padding: 10px 22px; border-radius: var(--radius-sm); transition: background .2s; display: inline-block; }
+.btn-primary:hover { background: var(--blue-700); }
+.btn-amber { background: var(--amber-500); color: white; font-weight: 700; font-size: 15px; padding: 14px 32px; border-radius: var(--radius); transition: background .2s, transform .15s; display: inline-block; }
+.btn-amber:hover { background: var(--amber-600); transform: translateY(-1px); }
+.btn-outline-white { background: transparent; color: white; font-weight: 600; font-size: 15px; padding: 14px 28px; border-radius: var(--radius); border: 2px solid rgba(255,255,255,0.3); transition: all .2s; display: inline-block; }
+.btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+.btn-nav { font-size: 14px; font-weight: 600; color: var(--slate-700); padding: 8px 16px; border-radius: var(--radius-sm); }
+.btn-nav:hover { background: var(--slate-100); }
+
+/* HERO */
+.hero { background: linear-gradient(160deg, var(--blue-900) 0%, var(--blue-800) 50%, #1a3875 100%); padding: 80px 5% 0; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%); pointer-events: none; }
+.hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: end; position: relative; z-index: 1; }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: var(--amber-400); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 20px; }
+.hero h1 { font-size: 52px; font-weight: 900; color: white; line-height: 1.05; letter-spacing: -2px; margin-bottom: 20px; }
+.hero h1 span { color: var(--amber-400); }
+.hero-sub { font-size: 17px; color: rgba(255,255,255,0.7); line-height: 1.65; margin-bottom: 36px; max-width: 460px; }
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+
+/* App window mockup */
+.app-window { background: var(--slate-100); border-radius: 16px 16px 0 0; box-shadow: 0 -20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.08); overflow: hidden; margin-top: 16px; }
+.window-bar { background: #e8eaed; height: 40px; display: flex; align-items: center; padding: 0 16px; gap: 8px; border-bottom: 1px solid #d1d5db; }
+.window-dot { width: 11px; height: 11px; border-radius: 50%; }
+.window-url { margin-left: 12px; background: white; border-radius: 6px; padding: 4px 12px; font-size: 11px; color: var(--slate-500); flex: 1; max-width: 280px; }
+.app-body { display: flex; height: 420px; }
+.app-sidebar { width: 180px; background: var(--blue-900); flex-shrink: 0; padding: 16px 12px; }
+.sidebar-logo { color: white; font-size: 13px; font-weight: 800; margin-bottom: 20px; padding: 0 4px; }
+.sidebar-logo span { color: var(--amber-400); }
+.sidebar-section { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.3); text-transform: uppercase; padding: 0 4px; margin: 12px 0 6px; }
+.sidebar-item { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 6px; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.55); margin-bottom: 2px; cursor: pointer; }
+.sidebar-item.active { background: rgba(255,255,255,0.15); color: white; }
+.sidebar-item:hover:not(.active) { background: rgba(255,255,255,0.07); }
+.app-main { flex: 1; overflow: hidden; background: var(--slate-50); }
+.app-topbar { background: white; border-bottom: 1px solid var(--slate-200); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
+.app-topbar-title { font-size: 14px; font-weight: 700; color: var(--slate-900); }
+.app-topbar-sub { font-size: 11px; color: var(--slate-500); }
+.app-content { padding: 16px 20px; overflow: auto; height: calc(100% - 48px); }
+.mini-btn { background: var(--blue-600); color: white; font-size: 10px; font-weight: 700; padding: 5px 12px; border-radius: 6px; border: none; cursor: pointer; }
+.mini-btn-outline { background: white; color: var(--slate-700); font-size: 10px; font-weight: 600; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--slate-300); cursor: pointer; }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+.stat-box { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 10px 12px; }
+.stat-box-num { font-size: 18px; font-weight: 800; color: var(--slate-900); }
+.stat-box-label { font-size: 9px; color: var(--slate-500); margin-top: 2px; }
+.bids-table { background: white; border: 1px solid var(--slate-200); border-radius: 8px; overflow: hidden; }
+.bids-table-head { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 80px; padding: 8px 12px; background: var(--slate-50); border-bottom: 1px solid var(--slate-200); }
+.bids-table-head span { font-size: 9px; font-weight: 700; color: var(--slate-500); text-transform: uppercase; letter-spacing: 0.5px; }
+.bids-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 80px; padding: 9px 12px; border-bottom: 1px solid var(--slate-100); align-items: center; }
+.bids-row:last-child { border-bottom: none; }
+.bid-client { font-size: 11px; font-weight: 600; color: var(--slate-900); }
+.bid-sub { font-size: 9px; color: var(--slate-400); }
+.bid-val { font-size: 11px; font-weight: 700; color: var(--slate-800); }
+.bid-date { font-size: 10px; color: var(--slate-500); }
+.badge { font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 100px; }
+.badge-draft { background: var(--slate-100); color: var(--slate-600); }
+.badge-sent { background: var(--blue-100); color: var(--blue-700); }
+.badge-won { background: var(--green-100); color: var(--green-600); }
+.badge-lost { background: #fee2e2; color: #dc2626; }
+
+/* SECTIONS */
+.section { padding: 88px 5%; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--blue-600); text-transform: uppercase; margin-bottom: 10px; }
+.section-title { font-size: 38px; font-weight: 900; color: var(--slate-900); letter-spacing: -1.5px; margin-bottom: 16px; line-height: 1.1; }
+.section-sub { font-size: 16px; color: var(--slate-500); line-height: 1.7; max-width: 560px; }
+.centered { text-align: center; }
+.centered .section-sub { margin: 0 auto; }
+
+/* FEATURE DETAIL */
+.feature-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.feature-split.flip { direction: rtl; }
+.feature-split.flip > * { direction: ltr; }
+.feature-points { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+.feature-points li { display: flex; align-items: flex-start; gap: 12px; }
+.fp-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--blue-50); border: 1px solid var(--blue-100); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.fp-title { font-size: 14px; font-weight: 700; color: var(--slate-900); margin-bottom: 2px; }
+.fp-desc { font-size: 13px; color: var(--slate-500); line-height: 1.6; }
+
+/* DETAIL SCREEN */
+.screen-card { background: white; border: 1.5px solid var(--slate-200); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+.screen-header { background: linear-gradient(135deg, var(--blue-600), var(--blue-700)); padding: 20px 24px; }
+.screen-header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.screen-header h3 { font-size: 16px; font-weight: 800; color: white; }
+.screen-header p { font-size: 12px; color: rgba(255,255,255,0.65); }
+.screen-badge { background: rgba(255,255,255,0.2); color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 100px; }
+.screen-body { padding: 20px 24px; }
+.line-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--slate-100); }
+.line-item:last-of-type { border-bottom: none; }
+.li-name { font-size: 13px; font-weight: 600; color: var(--slate-800); }
+.li-desc { font-size: 11px; color: var(--slate-400); }
+.li-val { font-size: 13px; font-weight: 700; color: var(--slate-900); }
+.total-bar { background: var(--blue-600); border-radius: 10px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
+.total-bar span { color: white; font-size: 13px; font-weight: 700; }
+.ai-box { background: linear-gradient(135deg, var(--blue-50), #e0eaff); border: 1px solid var(--blue-200); border-radius: 10px; padding: 14px 16px; margin-top: 14px; }
+.ai-box-label { font-size: 10px; font-weight: 700; color: var(--blue-600); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.ai-box-text { font-size: 12px; color: var(--slate-700); line-height: 1.65; }
+
+/* HOW IT WORKS */
+.how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; position: relative; }
+.how-steps::before { content: ''; position: absolute; top: 24px; left: 12%; right: 12%; height: 2px; background: linear-gradient(90deg, var(--blue-600), var(--blue-400)); z-index: 0; }
+.how-step { text-align: center; position: relative; z-index: 1; }
+.how-num { width: 48px; height: 48px; border-radius: 50%; background: var(--blue-600); color: white; font-size: 18px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 0 0 6px var(--white), 0 0 0 8px var(--blue-200); }
+.how-step h4 { font-size: 15px; font-weight: 800; color: var(--slate-900); margin-bottom: 8px; }
+.how-step p { font-size: 13px; color: var(--slate-500); line-height: 1.6; }
+
+/* CTA */
+.cta-band { background: linear-gradient(135deg, var(--blue-800), var(--blue-900)); padding: 80px 5%; text-align: center; }
+.cta-band h2 { font-size: 40px; font-weight: 900; color: white; letter-spacing: -1.5px; margin-bottom: 16px; }
+.cta-band h2 span { color: var(--amber-400); }
+.cta-band p { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 36px; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+footer { background: var(--slate-900); padding: 48px 5% 32px; }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+.footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+.footer-logo-text { font-size: 18px; font-weight: 900; color: white; }
+.footer-logo-text span { color: var(--amber-400); }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color .2s; }
+.footer-links a:hover { color: white; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .app-window { display: none; }
+  .hero h1 { font-size: 36px; }
+  .feature-split { grid-template-columns: 1fr; gap: 40px; }
+  .feature-split.flip { direction: ltr; }
+  .how-steps { grid-template-columns: 1fr 1fr; }
+  .how-steps::before { display: none; }
+  nav .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#1e40af"/><polygon points="32,8 10,22 54,22" fill="#F59E0B"/><rect x="8" y="20" width="48" height="5" rx="2" fill="#D97706"/><rect x="15" y="29" width="9" height="9" rx="2" fill="white" opacity="0.9"/><rect x="27.5" y="29" width="9" height="9" rx="2" fill="white" opacity="0.9"/><rect x="40" y="29" width="9" height="9" rx="2" fill="white" opacity="0.9"/></svg>
+      <span class="nav-brand">Build<span>IQ</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="bids.html" class="active">Bids</a>
+      <a href="invoices.html">Invoices</a>
+      <a href="contracts.html">Contracts</a>
+      <a href="marketing.html">Marketing</a>
+      <a href="crm.html">CRM</a>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <a href="#" class="btn-nav">Sign in</a>
+      <a href="index.html#pricing" class="btn-primary">Start free trial</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">📋 Feature</div>
+      <h1>Bids that win <span>more jobs.</span></h1>
+      <p class="hero-sub">Stop losing jobs to contractors who just look more professional on paper. BuildIQ generates detailed, precise estimates in minutes — with AI-written scope, line items, and terms that make clients say yes.</p>
+      <div class="hero-cta">
+        <a href="index.html#pricing" class="btn-amber">Start Free for 14 Days</a>
+        <a href="#how-it-works" class="btn-outline-white">See how it works →</a>
+      </div>
+    </div>
+    <div class="app-window">
+      <div class="window-bar">
+        <div class="window-dot" style="background:#ff5f57"></div>
+        <div class="window-dot" style="background:#ffbd2e"></div>
+        <div class="window-dot" style="background:#28ca41"></div>
+        <div class="window-url">app.buildiq.io/bids</div>
+      </div>
+      <div class="app-body">
+        <div class="app-sidebar">
+          <div class="sidebar-logo">Build<span>IQ</span></div>
+          <div class="sidebar-section">Business</div>
+          <div class="sidebar-item active">📋 Bids</div>
+          <div class="sidebar-item">🧾 Invoices</div>
+          <div class="sidebar-item">📄 Contracts</div>
+          <div class="sidebar-item">👥 Clients</div>
+          <div class="sidebar-section">Growth</div>
+          <div class="sidebar-item">🤝 CRM</div>
+          <div class="sidebar-item">📣 Marketing</div>
+        </div>
+        <div class="app-main">
+          <div class="app-topbar">
+            <div>
+              <div class="app-topbar-title">Bids & Estimates</div>
+              <div class="app-topbar-sub">7 bids · $218,400 total value</div>
+            </div>
+            <button class="mini-btn">+ New Bid</button>
+          </div>
+          <div class="app-content">
+            <div class="stats-row">
+              <div class="stat-box"><div class="stat-box-num">7</div><div class="stat-box-label">Total Bids</div></div>
+              <div class="stat-box"><div class="stat-box-num" style="color:#1d4ed8">3</div><div class="stat-box-label">Sent / Pending</div></div>
+              <div class="stat-box"><div class="stat-box-num" style="color:#16a34a">4</div><div class="stat-box-label">Won</div></div>
+              <div class="stat-box"><div class="stat-box-num" style="color:#d97706">$218k</div><div class="stat-box-label">Total Value</div></div>
+            </div>
+            <div class="bids-table">
+              <div class="bids-table-head">
+                <span>Client / Project</span><span>Value</span><span>Created</span><span>Status</span><span></span>
+              </div>
+              <div class="bids-row">
+                <div><div class="bid-client">Johnson Kitchen Remodel</div><div class="bid-sub">412 Oak Lane · Residential</div></div>
+                <div class="bid-val">$31,100</div>
+                <div class="bid-date">Jun 18</div>
+                <div><span class="badge badge-won">Won</span></div>
+                <div><button class="mini-btn-outline">View</button></div>
+              </div>
+              <div class="bids-row">
+                <div><div class="bid-client">Henderson Commercial Build</div><div class="bid-sub">800 Main St · Commercial</div></div>
+                <div class="bid-val">$142,500</div>
+                <div class="bid-date">Jun 20</div>
+                <div><span class="badge badge-sent">Sent</span></div>
+                <div><button class="mini-btn-outline">View</button></div>
+              </div>
+              <div class="bids-row">
+                <div><div class="bid-client">Williams Deck Addition</div><div class="bid-sub">24 Pine Rd · Residential</div></div>
+                <div class="bid-val">$18,200</div>
+                <div class="bid-date">Jun 21</div>
+                <div><span class="badge badge-draft">Draft</span></div>
+                <div><button class="mini-btn-outline">View</button></div>
+              </div>
+              <div class="bids-row">
+                <div><div class="bid-client">Mountain View Remodel</div><div class="bid-sub">55 Elk Trail · Residential</div></div>
+                <div class="bid-val">$26,600</div>
+                <div class="bid-date">Jun 15</div>
+                <div><span class="badge badge-won">Won</span></div>
+                <div><button class="mini-btn-outline">View</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BID DETAIL SECTION -->
+<section class="section" style="background:var(--slate-50);">
+  <div class="section-inner">
+    <div class="feature-split">
+      <div>
+        <div class="section-tag">What you get</div>
+        <h2 class="section-title">A complete bid — not just a number</h2>
+        <p class="section-sub">Every BuildIQ bid includes a detailed line-item breakdown, AI-written scope description, payment schedule, exclusions, and terms of service — everything a professional bid needs.</p>
+        <ul class="feature-points">
+          <li>
+            <div class="fp-icon">💡</div>
+            <div><div class="fp-title">AI scope from your notes</div><div class="fp-desc">Type rough notes about the project. Claude writes a polished, specific scope of work that covers all the bases.</div></div>
+          </li>
+          <li>
+            <div class="fp-icon">📊</div>
+            <div><div class="fp-title">Full line-item breakdown</div><div class="fp-desc">Labor, materials, equipment, subcontractors — each category itemized clearly. No more "just trust me" pricing.</div></div>
+          </li>
+          <li>
+            <div class="fp-icon">📅</div>
+            <div><div class="fp-title">Payment schedule included</div><div class="fp-desc">Draw schedules built into the bid so payment terms are agreed up front, before work starts.</div></div>
+          </li>
+          <li>
+            <div class="fp-icon">🔄</div>
+            <div><div class="fp-title">One-click convert to invoice</div><div class="fp-desc">When you win the bid, convert it straight to an invoice — no re-entering line items.</div></div>
+          </li>
+        </ul>
+      </div>
+      <div class="screen-card">
+        <div class="screen-header">
+          <div class="screen-header-top">
+            <h3>Johnson Kitchen Remodel</h3>
+            <span class="screen-badge">✓ WON</span>
+          </div>
+          <p>412 Oak Lane, Pigeon Forge, TN · Due Jun 30</p>
+        </div>
+        <div class="screen-body">
+          <div class="line-item">
+            <div><div class="li-name">Demo & Site Prep</div><div class="li-desc">Full kitchen demo, haul-off, floor protection</div></div>
+            <div class="li-val">$3,200</div>
+          </div>
+          <div class="line-item">
+            <div><div class="li-name">Cabinets & Hardware</div><div class="li-desc">Semi-custom cabinets, soft-close, install</div></div>
+            <div class="li-val">$11,400</div>
+          </div>
+          <div class="line-item">
+            <div><div class="li-name">Countertops (Quartz)</div><div class="li-desc">Silestone, edge profile, install</div></div>
+            <div class="li-val">$6,800</div>
+          </div>
+          <div class="line-item">
+            <div><div class="li-name">Plumbing & Electrical</div><div class="li-desc">Fixture relocation, recessed lighting</div></div>
+            <div class="li-val">$4,500</div>
+          </div>
+          <div class="line-item">
+            <div><div class="li-name">Flooring & Tile</div><div class="li-desc">LVP throughout, backsplash tile</div></div>
+            <div class="li-val">$5,200</div>
+          </div>
+          <div class="total-bar">
+            <span>Total Estimate</span>
+            <span>$31,100</span>
+          </div>
+          <div class="ai-box">
+            <div class="ai-box-label">✨ Claude AI — Scope Summary</div>
+            <div class="ai-box-text">"This estimate covers a complete kitchen renovation including full demolition, custom semi-custom cabinetry with soft-close hardware, quartz countertops with undermount sink, recessed lighting, LVP flooring, and subway tile backsplash. All labor and materials included. 2-year workmanship warranty..."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="section-inner">
+    <div class="centered">
+      <div class="section-tag">Simple by design</div>
+      <h2 class="section-title">From project notes to winning bid</h2>
+      <p class="section-sub">No templates to fill out. No formatting to figure out. Just answer a few questions and let Claude handle the rest.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <h4>Add the client</h4>
+        <p>Select an existing client or add a new one. Name, address, and contact info — takes 60 seconds.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <h4>Describe the project</h4>
+        <p>Type what you know — project type, scope, materials, timeline. Rough notes are fine.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <h4>Claude generates the bid</h4>
+        <p>Hit "Generate with AI." In under 30 seconds you have a complete, professional estimate with scope, line items, and terms.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <h4>Send & track</h4>
+        <p>Print or copy the bid. Track it from Draft → Sent → Won. Convert wins directly to invoices.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2>Your next bid is <span>20 minutes away.</span></h2>
+  <p>Start your free 14-day trial. No credit card required.</p>
+  <div class="cta-btns">
+    <a href="index.html#pricing" class="btn-amber">Start Free for 14 Days</a>
+    <a href="index.html" class="btn-outline-white">See all features</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <span class="footer-logo-text">Build<span>IQ</span></span>
+      <div class="footer-links">
+        <a href="bids.html">Bids</a>
+        <a href="invoices.html">Invoices</a>
+        <a href="contracts.html">Contracts</a>
+        <a href="marketing.html">Marketing</a>
+        <a href="crm.html">CRM</a>
+        <a href="index.html#pricing">Pricing</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 BuildIQ. All rights reserved. Powered by Claude AI.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

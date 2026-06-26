@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BuildIQ — AI Construction Platform | Bids, Invoices, Contracts & Marketing</title>
+<meta name="description" content="BuildIQ uses Claude AI to generate professional bids, invoices, contracts, and marketing content for contractors. Win more jobs. Save hours. $49/month."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue-900: #1e3a8a; --blue-800: #1e40af; --blue-700: #1d4ed8;
+  --blue-600: #2563eb; --blue-500: #3b82f6; --blue-100: #dbeafe; --blue-50: #eff6ff;
+  --amber-600: #d97706; --amber-500: #f59e0b; --amber-400: #fbbf24; --amber-50: #fffbeb;
+  --green-500: #22c55e; --green-100: #dcfce7;
+  --slate-900: #0f172a; --slate-800: #1e293b; --slate-700: #334155;
+  --slate-600: #475569; --slate-500: #64748b; --slate-400: #94a3b8;
+  --slate-300: #cbd5e1; --slate-200: #e2e8f0; --slate-100: #f1f5f9; --slate-50: #f8fafc;
+  --white: #ffffff;
+  --radius-sm: 8px; --radius: 12px; --radius-lg: 20px; --radius-xl: 28px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--slate-800); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--slate-200);
+  padding: 0 5%;
+}
+.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo-icon { width: 36px; height: 36px; }
+.nav-brand { font-size: 22px; font-weight: 900; color: var(--slate-900); letter-spacing: -0.5px; }
+.nav-brand span { color: var(--blue-600); }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--slate-600); transition: color .2s; }
+.nav-links a:hover { color: var(--blue-600); }
+.nav-cta { display: flex; gap: 10px; align-items: center; }
+.btn-nav { font-size: 14px; font-weight: 600; color: var(--slate-700); padding: 8px 16px; border-radius: var(--radius-sm); transition: background .2s; }
+.btn-nav:hover { background: var(--slate-100); }
+.btn-primary { background: var(--blue-600); color: white; font-weight: 700; font-size: 14px; padding: 10px 22px; border-radius: var(--radius-sm); transition: background .2s, transform .15s; cursor: pointer; border: none; display: inline-block; }
+.btn-primary:hover { background: var(--blue-700); transform: translateY(-1px); }
+.btn-amber { background: var(--amber-500); color: white; font-weight: 700; font-size: 15px; padding: 14px 32px; border-radius: var(--radius); transition: background .2s, transform .15s; cursor: pointer; border: none; display: inline-block; }
+.btn-amber:hover { background: var(--amber-600); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: white; font-weight: 600; font-size: 15px; padding: 14px 28px; border-radius: var(--radius); border: 2px solid rgba(255,255,255,0.3); transition: all .2s; display: inline-block; }
+.btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+.btn-lg { font-size: 17px; padding: 16px 36px; border-radius: var(--radius); }
+.btn-white { background: white; color: var(--blue-700); font-weight: 700; font-size: 15px; padding: 14px 32px; border-radius: var(--radius); transition: all .2s; display: inline-block; }
+.btn-white:hover { background: var(--blue-50); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, var(--blue-900) 0%, var(--blue-800) 50%, #1a3875 100%);
+  padding: 100px 5% 80px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -80px; left: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: var(--amber-400); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+.hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--amber-400); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+.hero h1 { font-size: 56px; font-weight: 900; color: white; line-height: 1.05; letter-spacing: -2px; margin-bottom: 24px; }
+.hero h1 span { color: var(--amber-400); }
+.hero-sub { font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.65; margin-bottom: 40px; max-width: 480px; }
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-trust { display: flex; gap: 24px; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.55); font-size: 13px; font-weight: 500; }
+.trust-item svg { color: var(--green-500); flex-shrink: 0; }
+
+/* Hero app mockup */
+.hero-visual { position: relative; }
+.app-mockup { background: white; border-radius: 20px; box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1); overflow: hidden; transform: perspective(1000px) rotateY(-6deg) rotateX(2deg); }
+.mockup-bar { background: var(--slate-100); height: 44px; display: flex; align-items: center; padding: 0 16px; gap: 8px; border-bottom: 1px solid var(--slate-200); }
+.mockup-dot { width: 12px; height: 12px; border-radius: 50%; }
+.mockup-content { padding: 20px; }
+.mockup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.mockup-title { font-size: 14px; font-weight: 700; color: var(--slate-900); }
+.mockup-badge { background: var(--blue-100); color: var(--blue-700); font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
+.mockup-row { background: var(--slate-50); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+.mockup-row-label { font-size: 12px; font-weight: 600; color: var(--slate-700); }
+.mockup-row-val { font-size: 12px; font-weight: 700; color: var(--slate-900); }
+.mockup-ai { background: linear-gradient(135deg, var(--blue-50), #e0eaff); border: 1px solid var(--blue-200); border-radius: 10px; padding: 14px; margin-top: 12px; }
+.mockup-ai-label { font-size: 10px; font-weight: 700; color: var(--blue-600); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.mockup-ai-text { font-size: 11px; color: var(--slate-700); line-height: 1.6; }
+.mockup-total { background: var(--blue-600); color: white; border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; margin-top: 12px; }
+.mockup-total span { font-size: 12px; font-weight: 700; }
+
+/* ── LOGOS BAR ── */
+.logos-bar { background: var(--slate-50); border-top: 1px solid var(--slate-200); border-bottom: 1px solid var(--slate-200); padding: 28px 5%; }
+.logos-bar-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: center; }
+.logos-bar-label { font-size: 12px; font-weight: 600; color: var(--slate-400); letter-spacing: 1.5px; text-transform: uppercase; flex-shrink: 0; }
+.logo-pill { background: white; border: 1.5px solid var(--slate-200); border-radius: 100px; padding: 8px 20px; font-size: 13px; font-weight: 700; color: var(--slate-500); }
+
+/* ── SECTION WRAPPER ── */
+.section { padding: 96px 5%; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--blue-600); text-transform: uppercase; margin-bottom: 10px; }
+.section-title { font-size: 40px; font-weight: 900; color: var(--slate-900); letter-spacing: -1.5px; margin-bottom: 16px; line-height: 1.1; }
+.section-sub { font-size: 17px; color: var(--slate-500); max-width: 560px; line-height: 1.7; }
+.centered { text-align: center; }
+.centered .section-sub { margin: 0 auto; }
+
+/* ── FEATURES (modules) ── */
+.features { background: white; }
+.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 64px; }
+.features-grid .feature-card:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: 560px; margin: 0 auto; }
+.feature-card {
+  border-radius: var(--radius-xl); padding: 40px; border: 2px solid var(--slate-200);
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+  position: relative; overflow: hidden;
+}
+.feature-card:hover { border-color: var(--blue-400); box-shadow: 0 12px 40px rgba(37,99,235,0.1); transform: translateY(-3px); }
+.feature-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
+.feature-card h3 { font-size: 22px; font-weight: 800; color: var(--slate-900); margin-bottom: 12px; letter-spacing: -0.3px; }
+.feature-card p { font-size: 15px; color: var(--slate-600); line-height: 1.7; margin-bottom: 20px; }
+.feature-list { display: flex; flex-direction: column; gap: 8px; }
+.feature-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--slate-600); list-style: none; }
+.feature-list li::before { content: '✓'; color: var(--blue-600); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+.feature-accent { position: absolute; top: 0; right: 0; width: 120px; height: 120px; opacity: 0.05; border-radius: 0 0 0 100%; }
+
+/* ── HOW IT WORKS ── */
+.how-it-works { background: var(--slate-50); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px; position: relative; }
+.steps::before {
+  content: ''; position: absolute; top: 28px; left: 14%; right: 14%; height: 2px;
+  background: linear-gradient(90deg, var(--blue-600), var(--blue-400));
+  z-index: 0;
+}
+.step { text-align: center; position: relative; z-index: 1; }
+.step-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--blue-600); color: white;
+  font-size: 20px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; box-shadow: 0 0 0 6px var(--slate-50), 0 0 0 8px var(--blue-200);
+}
+.step h4 { font-size: 16px; font-weight: 800; color: var(--slate-900); margin-bottom: 8px; }
+.step p { font-size: 14px; color: var(--slate-500); line-height: 1.6; }
+
+/* ── TESTIMONIALS ── */
+.testimonials { background: white; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+.testimonial-card { background: var(--slate-50); border-radius: var(--radius-lg); padding: 32px; border: 1.5px solid var(--slate-200); }
+.testimonial-stars { color: var(--amber-500); font-size: 18px; margin-bottom: 16px; letter-spacing: 2px; }
+.testimonial-quote { font-size: 15px; color: var(--slate-700); line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: white; flex-shrink: 0; }
+.author-name { font-size: 14px; font-weight: 700; color: var(--slate-900); }
+.author-title { font-size: 12px; color: var(--slate-500); margin-top: 2px; }
+
+/* ── PRICING ── */
+.pricing { background: var(--slate-50); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; align-items: start; }
+.pricing-card { background: white; border-radius: var(--radius-xl); padding: 36px; border: 2px solid var(--slate-200); }
+.pricing-card.featured { border-color: var(--blue-600); position: relative; box-shadow: 0 20px 60px rgba(37,99,235,0.15); transform: scale(1.03); }
+.pricing-popular { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--blue-600); color: white; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 16px; border-radius: 100px; white-space: nowrap; }
+.pricing-tier { font-size: 12px; font-weight: 700; color: var(--blue-600); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.pricing-price { font-size: 48px; font-weight: 900; color: var(--slate-900); letter-spacing: -2px; line-height: 1; margin-bottom: 4px; }
+.pricing-price sup { font-size: 24px; vertical-align: top; margin-top: 6px; }
+.pricing-price sub { font-size: 16px; color: var(--slate-500); font-weight: 500; letter-spacing: 0; }
+.pricing-desc { font-size: 14px; color: var(--slate-500); margin-bottom: 28px; margin-top: 8px; }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 32px; }
+.pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--slate-700); }
+.pricing-features li::before { content: '✓'; color: var(--blue-600); font-weight: 800; flex-shrink: 0; }
+.pricing-features li.off { color: var(--slate-400); }
+.pricing-features li.off::before { content: '—'; color: var(--slate-300); }
+.pricing-btn-outline { display: block; text-align: center; padding: 13px; border-radius: var(--radius); border: 2px solid var(--slate-200); font-weight: 700; font-size: 14px; color: var(--slate-700); transition: all .2s; }
+.pricing-btn-outline:hover { border-color: var(--blue-600); color: var(--blue-600); }
+.pricing-btn-fill { display: block; text-align: center; padding: 14px; border-radius: var(--radius); background: var(--blue-600); font-weight: 700; font-size: 14px; color: white; transition: background .2s; }
+.pricing-btn-fill:hover { background: var(--blue-700); }
+.pricing-note { text-align: center; margin-top: 40px; color: var(--slate-500); font-size: 14px; }
+
+/* ── CTA BAND ── */
+.cta-band { background: linear-gradient(135deg, var(--blue-800), var(--blue-900)); padding: 96px 5%; position: relative; overflow: hidden; }
+.cta-band::before { content:''; position:absolute; top:-120px; right:-80px; width:500px; height:500px; background:radial-gradient(circle, rgba(245,158,11,.12) 0%, transparent 70%); pointer-events:none; }
+.cta-band-inner { max-width: 720px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+.cta-band h2 { font-size: 44px; font-weight: 900; color: white; letter-spacing: -1.5px; margin-bottom: 18px; line-height: 1.1; }
+.cta-band h2 span { color: var(--amber-400); }
+.cta-band p { font-size: 17px; color: rgba(255,255,255,0.65); margin-bottom: 40px; line-height: 1.7; }
+.cta-band-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ── STATS ── */
+.stats { background: white; padding: 72px 5%; border-bottom: 1px solid var(--slate-100); }
+.stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; text-align: center; }
+.stat-num { font-size: 48px; font-weight: 900; color: var(--blue-600); letter-spacing: -2px; line-height: 1; }
+.stat-num span { color: var(--amber-500); }
+.stat-label { font-size: 14px; color: var(--slate-500); margin-top: 8px; font-weight: 500; }
+
+/* ── FAQ ── */
+.faq { background: white; }
+.faq-grid { max-width: 780px; margin: 60px auto 0; display: flex; flex-direction: column; gap: 0; }
+.faq-item { border-bottom: 1px solid var(--slate-200); }
+.faq-q { padding: 22px 0; font-size: 16px; font-weight: 700; color: var(--slate-900); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+.faq-q:hover { color: var(--blue-600); }
+.faq-toggle { font-size: 22px; font-weight: 300; color: var(--slate-400); transition: transform .3s; flex-shrink: 0; }
+.faq-a { padding: 0 0 22px; font-size: 15px; color: var(--slate-600); line-height: 1.7; display: none; }
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); color: var(--blue-600); }
+
+/* ── FOOTER ── */
+footer { background: var(--slate-900); padding: 72px 5% 40px; }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+.footer-brand { }
+.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.footer-logo-text { font-size: 20px; font-weight: 900; color: white; }
+.footer-logo-text span { color: var(--amber-400); }
+.footer-tagline { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 280px; }
+.footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color .2s; }
+.footer-col ul li a:hover { color: white; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-copy { font-size: 13px; color: rgba(255,255,255,0.35); }
+.footer-legal { display: flex; gap: 24px; }
+.footer-legal a { font-size: 13px; color: rgba(255,255,255,0.35); transition: color .2s; }
+.footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { display: none; }
+  .hero h1 { font-size: 40px; }
+  .features-grid, .testimonials-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card.featured { transform: scale(1); }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .steps::before { display: none; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  nav .nav-links { display: none; }
+  .section-title { font-size: 30px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <svg class="nav-logo-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="64" rx="12" fill="#1e40af"/>
+        <polygon points="32,8 10,22 54,22" fill="#F59E0B"/>
+        <rect x="8" y="20" width="48" height="5" rx="2" fill="#D97706"/>
+        <rect x="15" y="29" width="9" height="9" rx="2" fill="white" opacity="0.9"/>
+        <rect x="27.5" y="29" width="9" height="9" rx="2" fill="white" opacity="0.9"/>
+        <rect x="40" y="29" width="9" height="9" rx="2" fill="white" opacity="0.9"/>
+        <rect x="15" y="42" width="9" height="9" rx="2" fill="white" opacity="0.5"/>
+        <rect x="27.5" y="42" width="9" height="9" rx="2" fill="white" opacity="0.9"/>
+        <rect x="40" y="42" width="9" height="9" rx="2" fill="white" opacity="0.5"/>
+      </svg>
+      <span class="nav-brand">Build<span>IQ</span></span>
+    </div>
+    <div class="nav-links">
+      <a href="bids.html">Bids</a>
+      <a href="invoices.html">Invoices</a>
+      <a href="contracts.html">Contracts</a>
+      <a href="marketing.html">Marketing</a>
+      <a href="crm.html">CRM</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <div class="nav-cta">
+      <a href="https://buildiq-production-19b9.up.railway.app/login" class="btn-nav">Sign in</a>
+      <a href="https://buildiq-production-19b9.up.railway.app/register" class="btn-primary">Start free trial</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-tag">Powered by Claude AI</div>
+      <h1>Win More Bids.<br/><span>Build Faster.</span><br/>Get Paid.</h1>
+      <p class="hero-sub">BuildIQ is the all-in-one AI platform built for contractors. Generate professional bids, invoices, contracts, marketing content, and manage your leads — all in one place.</p>
+      <div class="hero-cta">
+        <a href="https://buildiq-production-19b9.up.railway.app/register" class="btn-amber btn-lg">Start Free for 14 Days</a>
+        <a href="#how-it-works" class="btn-outline">See how it works →</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          No credit card required
+        </div>
+        <div class="trust-item">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          Cancel anytime
+        </div>
+        <div class="trust-item">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          Set up in under 5 minutes
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="app-mockup">
+        <div class="mockup-bar">
+          <div class="mockup-dot" style="background:#ff5f57"></div>
+          <div class="mockup-dot" style="background:#ffbd2e"></div>
+          <div class="mockup-dot" style="background:#28ca41"></div>
+          <span style="margin-left:12px;font-size:12px;color:#94a3b8;font-weight:500;">app.buildiq.io — Johnson Kitchen Remodel</span>
+        </div>
+        <div class="mockup-content">
+          <div class="mockup-header">
+            <div class="mockup-title">📋 Bid Estimate — Johnson Kitchen</div>
+            <div class="mockup-badge">AI GENERATED</div>
+          </div>
+          <div class="mockup-row">
+            <div class="mockup-row-label">Demo & Site Prep</div>
+            <div class="mockup-row-val">$3,200</div>
+          </div>
+          <div class="mockup-row">
+            <div class="mockup-row-label">Cabinets & Hardware</div>
+            <div class="mockup-row-val">$11,400</div>
+          </div>
+          <div class="mockup-row">
+            <div class="mockup-row-label">Countertops (Quartz)</div>
+            <div class="mockup-row-val">$6,800</div>
+          </div>
+          <div class="mockup-row">
+            <div class="mockup-row-label">Plumbing & Electrical</div>
+            <div class="mockup-row-val">$4,500</div>
+          </div>
+          <div class="mockup-row">
+            <div class="mockup-row-label">Flooring & Tile</div>
+            <div class="mockup-row-val">$5,200</div>
+          </div>
+          <div class="mockup-ai">
+            <div class="mockup-ai-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              Claude AI — Executive Summary
+            </div>
+            <div class="mockup-ai-text">"This estimate covers a complete kitchen renovation at 412 Oak Lane including demolition, custom cabinetry, quartz countertops, new plumbing fixtures, and LVP flooring. All work warrants 2 years labor and 1 year materials..."</div>
+          </div>
+          <div class="mockup-total">
+            <span>Total Estimate</span>
+            <span>$31,100</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS BAR -->
+<div class="logos-bar">
+  <div class="logos-bar-inner">
+    <span class="logos-bar-label">Trusted by contractors in</span>
+    <div class="logo-pill">General Contractors</div>
+    <div class="logo-pill">Remodelers</div>
+    <div class="logo-pill">Roofers</div>
+    <div class="logo-pill">Electricians</div>
+    <div class="logo-pill">Plumbers</div>
+    <div class="logo-pill">Custom Builders</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">10<span>x</span></div>
+      <div class="stat-label">Faster bid creation vs. manual</div>
+    </div>
+    <div>
+      <div class="stat-num">2<span>hrs</span></div>
+      <div class="stat-label">Average time saved per bid</div>
+    </div>
+    <div>
+      <div class="stat-num"><span>$</span>49</div>
+      <div class="stat-label">Starting at $49/month</div>
+    </div>
+    <div>
+      <div class="stat-num">5</div>
+      <div class="stat-label">Business tools in one platform</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section features" id="features">
+  <div class="section-inner">
+    <div class="centered">
+      <div class="section-tag">What's inside</div>
+      <h2 class="section-title">Everything you need to run your business</h2>
+      <p class="section-sub">Five AI-powered modules that replace the spreadsheets, Word docs, sticky notes, and guesswork contractors deal with every day.</p>
+    </div>
+    <div class="features-grid">
+      <a href="bids.html" class="feature-card" style="display:block;">
+        <div class="feature-icon" style="background:#eff6ff;">📋</div>
+        <h3>Bids & Estimates</h3>
+        <p>Enter your project details and Claude AI generates a complete, professional bid — detailed scope, line-item costs, exclusions, payment schedule, and terms — in under 10 minutes.</p>
+        <ul class="feature-list">
+          <li>AI writes the entire estimate from your notes</li>
+          <li>Labor, materials, equipment, and overhead breakdowns</li>
+          <li>Tracks draft → sent → won/lost status</li>
+          <li>One-click convert won bids to invoices</li>
+          <li>Valid-until dates and professional formatting</li>
+        </ul>
+        <div class="feature-accent" style="background:var(--blue-600);"></div>
+      </a>
+      <a href="invoices.html" class="feature-card" style="display:block;">
+        <div class="feature-icon" style="background:#fffbeb;">🧾</div>
+        <h3>Professional Invoicing</h3>
+        <p>Create clean, professional invoices with line items and auto-calculated totals. Track payments, record partials, and always know what's outstanding at a glance.</p>
+        <ul class="feature-list">
+          <li>Unlimited line items with auto-total calculation</li>
+          <li>Tax rate support and balance tracking</li>
+          <li>Auto-generated invoice numbers (INV-2026-0042)</li>
+          <li>Payment recording and balance due tracking</li>
+          <li>Print-ready layout — no design skills needed</li>
+        </ul>
+        <div class="feature-accent" style="background:var(--amber-500);"></div>
+      </a>
+      <a href="contracts.html" class="feature-card" style="display:block;">
+        <div class="feature-icon" style="background:#f0fdf4;">📄</div>
+        <h3>AI Contract Generation</h3>
+        <p>Stop using the same contract you copied from the internet 10 years ago. Claude drafts a complete, professional construction contract from your project details — all 15 sections.</p>
+        <ul class="feature-list">
+          <li>Residential, commercial, remodel, T&M, sub agreements</li>
+          <li>Scope, payment schedule, change orders, warranty</li>
+          <li>Insurance, indemnification, dispute resolution</li>
+          <li>Termination clause and governing law</li>
+          <li>Signature blocks ready for both parties</li>
+        </ul>
+        <div class="feature-accent" style="background:#22c55e;"></div>
+      </a>
+      <a href="marketing.html" class="feature-card" style="display:block;">
+        <div class="feature-icon" style="background:#fdf4ff;">📣</div>
+        <h3>Marketing Content</h3>
+        <p>You're great at building things. Marketing? That's where most contractors leave money on the table. BuildIQ generates professional marketing content tailored to your business in seconds.</p>
+        <ul class="feature-list">
+          <li>Website hero copy and landing page content</li>
+          <li>Google Business Profile description (SEO-optimized)</li>
+          <li>Social posts for Instagram, Facebook, LinkedIn</li>
+          <li>Email outreach and follow-up templates</li>
+          <li>Flyer copy and review request messages</li>
+        </ul>
+        <div class="feature-accent" style="background:#a855f7;"></div>
+      </a>
+      <a href="crm.html" class="feature-card" style="display:block;">
+        <div class="feature-icon" style="background:#ecfdf5;">🤝</div>
+        <h3>CRM & Lead Pipeline</h3>
+        <p>Stop letting leads fall through the cracks. BuildIQ's CRM tracks every prospect from first contact to signed contract — with AI-generated follow-ups that actually sound like you wrote them.</p>
+        <ul class="feature-list">
+          <li>Visual pipeline: New Lead → Contacted → Proposal Sent → Won</li>
+          <li>AI generates follow-up emails, SMS, voicemail scripts, and proposal intros</li>
+          <li>Full activity timeline — calls, meetings, emails, site visits</li>
+          <li>One-click convert a won lead directly into a bid</li>
+          <li>Open pipeline value and conversion tracking</li>
+        </ul>
+        <div class="feature-accent" style="background:#10b981;"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how-it-works" id="how-it-works">
+  <div class="section-inner">
+    <div class="centered">
+      <div class="section-tag">Simple by design</div>
+      <h2 class="section-title">From zero to professional in minutes</h2>
+      <p class="section-sub">No training required. No 90-minute onboarding call. If you can fill out a form, you can use BuildIQ.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Set up your profile</h4>
+        <p>Add your company name, specialty, and service area. Takes 3 minutes. This is what makes all AI content yours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Enter project details</h4>
+        <p>Tell BuildIQ about the job — type, scope, client, timeline. No need to write anything professional yet.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Claude generates it</h4>
+        <p>Hit generate. In under 30 seconds, Claude writes a professional bid, contract, or marketing piece from your notes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Send & win</h4>
+        <p>Review, adjust if needed, and send. Track status as bids move from draft to sent to won. Get paid faster.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials">
+  <div class="section-inner">
+    <div class="centered">
+      <div class="section-tag">Real contractors</div>
+      <h2 class="section-title">The tool they wish existed years ago</h2>
+      <p class="section-sub">Don't take our word for it — here's what contractors say after their first week.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"I was spending 3-4 hours writing bids every weekend. With BuildIQ I knock out a full bid in 20 minutes and it looks way more professional than what I was doing before. Won my last 4 bids in a row."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#1e40af;">M</div>
+          <div>
+            <div class="author-name">Marcus T.</div>
+            <div class="author-title">General Contractor · Austin, TX</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" style="border-color:#e0eaff;background:#f5f8ff;">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"The contract generator alone is worth it. I used to just use the same old agreement I found online. Now every job gets a proper contract and clients actually take me more seriously."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#d97706;">R</div>
+          <div>
+            <div class="author-name">Rachel S.</div>
+            <div class="author-title">Remodeling Contractor · Denver, CO</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Set up my Google Business description in 90 seconds. My buddy paid a marketing agency $800 for worse copy. This thing pays for itself every single month."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#16a34a;">D</div>
+          <div>
+            <div class="author-name">Derek M.</div>
+            <div class="author-title">Roofing Contractor · Nashville, TN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing" id="pricing">
+  <div class="section-inner">
+    <div class="centered">
+      <div class="section-tag">Simple pricing</div>
+      <h2 class="section-title">Pays for itself on the first bid</h2>
+      <p class="section-sub">Start free for 14 days. No credit card required. Upgrade, downgrade, or cancel anytime.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price"><sup>$</sup>49<sub>/mo</sub></div>
+        <div class="pricing-desc">Perfect for solo contractors getting started</div>
+        <ul class="pricing-features">
+          <li>10 AI bids per month</li>
+          <li>10 invoices per month</li>
+          <li>5 contracts per month</li>
+          <li>10 marketing pieces</li>
+          <li>Client database</li>
+          <li>Print-ready layouts</li>
+          <li class="off">Multiple users</li>
+          <li class="off">PDF export</li>
+          <li class="off">Priority AI generation</li>
+        </ul>
+        <a href="https://buildiq-production-19b9.up.railway.app/register" class="pricing-btn-outline">Start free trial</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-popular">Most Popular</div>
+        <div class="pricing-tier">Professional</div>
+        <div class="pricing-price"><sup>$</sup>149<sub>/mo</sub></div>
+        <div class="pricing-desc">For contractors serious about growing</div>
+        <ul class="pricing-features">
+          <li>Unlimited AI bids</li>
+          <li>Unlimited invoices</li>
+          <li>Unlimited contracts</li>
+          <li>Unlimited marketing</li>
+          <li>3 team members</li>
+          <li>PDF export</li>
+          <li>Priority AI generation</li>
+          <li>Client portal (coming soon)</li>
+          <li class="off">Custom branding</li>
+        </ul>
+        <a href="https://buildiq-production-19b9.up.railway.app/register" class="pricing-btn-fill">Start free trial</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Business</div>
+        <div class="pricing-price"><sup>$</sup>299<sub>/mo</sub></div>
+        <div class="pricing-desc">For growing teams that need everything</div>
+        <ul class="pricing-features">
+          <li>Everything in Pro</li>
+          <li>10 team members</li>
+          <li>Custom branding</li>
+          <li>QuickBooks sync</li>
+          <li>Payment processing</li>
+          <li>E-signature (coming soon)</li>
+          <li>API access</li>
+          <li>Priority support</li>
+          <li>White-label option</li>
+        </ul>
+        <a href="https://buildiq-production-19b9.up.railway.app/register" class="pricing-btn-outline">Start free trial</a>
+      </div>
+    </div>
+    <p class="pricing-note">All plans include a 14-day free trial with full features. Annual billing saves 2 months (17% off).</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <div class="section-inner">
+    <div class="centered">
+      <div class="section-tag">Common questions</div>
+      <h2 class="section-title">Straight answers</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">Do I need to know anything about AI to use BuildIQ? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">No. You fill out a form about your project, click a button, and BuildIQ handles the rest. If you can send a text message, you can use BuildIQ. The AI is working behind the scenes — you just see the finished document.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Are the AI-generated contracts legally binding? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">BuildIQ generates professional contract templates based on standard construction contract law. They're comprehensive and well-structured — but like any contract template, we recommend having a licensed attorney in your state review before signing, especially for large projects. Every contract we generate includes this disclaimer clearly.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How long does it take to generate a bid? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">About 10-20 minutes total. Most of that is you filling in the project details. The actual AI generation takes under 30 seconds. The more detail you provide in the project scope field, the more accurate and specific the bid will be.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I edit the content Claude generates? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Yes. Everything Claude generates is a starting point. You can copy the text and adjust any numbers, terms, or language before sending. We're adding inline editing and version history in the next release.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What happens to my data? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Your business data (clients, bids, invoices, contracts) is stored securely in our database and is never sold or shared. Project details sent to Claude AI are processed under Anthropic's enterprise privacy policy and are not used to train their models.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I cancel anytime? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Yes, no questions asked. Cancel from your account settings at any time and you won't be charged again. You keep access through the end of your billing period and can export all your data.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does BuildIQ work on mobile? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">The web app works on mobile browsers. A dedicated iOS and Android app is on our roadmap for Q3 2026, which will let you create bids on-site from your phone or tablet.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <h2>Stop leaving money on the table.<br/><span>Start BuildIQ today.</span></h2>
+    <p>Join contractors who are winning more bids, getting paid faster, and spending less time on paperwork. 14-day free trial, no credit card required.</p>
+    <div class="cta-band-btns">
+      <a href="https://buildiq-production-19b9.up.railway.app/register" class="btn-amber btn-lg">Start Free for 14 Days</a>
+      <a href="#features" class="btn-outline">See all features</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect width="64" height="64" rx="12" fill="#1e40af"/>
+            <polygon points="32,8 10,22 54,22" fill="#F59E0B"/>
+            <rect x="8" y="20" width="48" height="5" rx="2" fill="#D97706"/>
+            <rect x="15" y="29" width="9" height="9" rx="2" fill="white" opacity="0.9"/>
+            <rect x="27.5" y="29" width="9" height="9" rx="2" fill="white" opacity="0.9"/>
+            <rect x="40" y="29" width="9" height="9" rx="2" fill="white" opacity="0.9"/>
+            <rect x="15" y="42" width="9" height="9" rx="2" fill="white" opacity="0.5"/>
+            <rect x="27.5" y="42" width="9" height="9" rx="2" fill="white" opacity="0.9"/>
+            <rect x="40" y="42" width="9" height="9" rx="2" fill="white" opacity="0.5"/>
+          </svg>
+          <span class="footer-logo-text">Build<span>IQ</span></span>
+        </div>
+        <p class="footer-tagline">AI-powered bids, invoices, contracts, marketing, and CRM for the modern contractor.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#">Bids & Estimates</a></li>
+          <li><a href="#">Invoicing</a></li>
+          <li><a href="#">Contracts</a></li>
+          <li><a href="#">Marketing</a></li>
+          <li><a href="#">CRM</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Getting Started</a></li>
+          <li><a href="#">API Docs</a></li>
+          <li><a href="#">Status</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 BuildIQ. All rights reserved. Powered by Claude AI.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html#cookies">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const el = document.querySelector(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  });
+});
+</script>
+</body>
+</html>
